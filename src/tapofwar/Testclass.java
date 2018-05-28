@@ -10,5 +10,7 @@ package tapofwar;
  * @author Michael
  */
 public class Testclass {
-    
+    public void test(){
+        System.out.println("A");
+    }
 }
