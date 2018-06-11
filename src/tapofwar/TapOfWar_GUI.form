@@ -41,12 +41,19 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="barMain" min="-2" pref="261" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="456" max="32767" attributes="0"/>
+              <EmptySpace pref="223" max="32767" attributes="0"/>
+              <Component id="barMain" min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ctrlabel" alignment="3" min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="ctrlabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,6 +88,11 @@
           <Font name="Segoe UI" size="20" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No power"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="barMain">
+      <Properties>
+        <Property name="value" type="int" value="50"/>
       </Properties>
     </Component>
   </SubComponents>

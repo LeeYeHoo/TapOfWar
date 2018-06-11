@@ -32,6 +32,7 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         ctrlabel = new javax.swing.JLabel();
         ctrlabel2 = new javax.swing.JLabel();
         p1power = new javax.swing.JLabel();
+        barMain = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -49,6 +50,8 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         p1power.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         p1power.setText("No power");
 
+        barMain.setValue(50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,11 +67,17 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(ctrlabel2)
                         .addGap(66, 66, 66))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(456, Short.MAX_VALUE)
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctrlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctrlabel2))
@@ -86,14 +95,16 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         if(evt.getKeyCode()== KeyEvent.VK_M){
             player1ctr++;
             ctrlabel.setText(""+player1ctr);
-            System.out.println(player1ctr);
             if(player1ctr==10){
                 p1power.setText("N-NANI??");
             }    
+            
+            barMain.setValue(barMain.getValue() - 1);
         }else if(evt.getKeyCode()== KeyEvent.VK_Z){
             player2ctr++;
             ctrlabel2.setText(""+player2ctr);
-            System.out.println(player2ctr);
+            
+            barMain.setValue(barMain.getValue() + 1);
         }
     }//GEN-LAST:event_formKeyReleased
 
@@ -133,6 +144,7 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar barMain;
     private javax.swing.JLabel ctrlabel;
     private javax.swing.JLabel ctrlabel2;
     private javax.swing.JLabel p1power;
