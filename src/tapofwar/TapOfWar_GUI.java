@@ -5,6 +5,8 @@
  */
 package tapofwar;
 
+import com.sun.glass.events.KeyEvent;
+
 /**
  *
  * @author LoganLee
@@ -27,51 +29,73 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTapTwo = new javax.swing.JButton();
-        btnTapOne = new javax.swing.JButton();
+        ctrlabel = new javax.swing.JLabel();
+        ctrlabel2 = new javax.swing.JLabel();
+        p1power = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnTapTwo.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
-        btnTapTwo.setText("Tap");
-
-        btnTapOne.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
-        btnTapOne.setText("Tap");
-        btnTapOne.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnTapOneKeyPressed(evt);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
             }
         });
+
+        ctrlabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        ctrlabel.setText("Player 1");
+
+        ctrlabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        ctrlabel2.setText("Player 2");
+
+        p1power.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        p1power.setText("No power");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTapTwo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTapOne, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(p1power)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ctrlabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(ctrlabel2)
+                        .addGap(66, 66, 66))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnTapTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addComponent(btnTapOne, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(456, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ctrlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctrlabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(p1power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTapOneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTapOneKeyPressed
-//        if(evt.getKeyCode().equals(KeyCodes)){
-//            
-//        }
-    }//GEN-LAST:event_btnTapOneKeyPressed
+    int player1ctr=0;
+    int player2ctr=0;
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_M){
+            player1ctr++;
+            ctrlabel.setText(""+player1ctr);
+            System.out.println(player1ctr);
+            if(player1ctr==10){
+                p1power.setText("N-NANI??");
+            }    
+        }else if(evt.getKeyCode()== KeyEvent.VK_Z){
+            player2ctr++;
+            ctrlabel2.setText(""+player2ctr);
+            System.out.println(player2ctr);
+        }
+    }//GEN-LAST:event_formKeyReleased
 
     /**
      * @param args the command line arguments
@@ -109,7 +133,8 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTapOne;
-    private javax.swing.JButton btnTapTwo;
+    private javax.swing.JLabel ctrlabel;
+    private javax.swing.JLabel ctrlabel2;
+    private javax.swing.JLabel p1power;
     // End of variables declaration//GEN-END:variables
 }
