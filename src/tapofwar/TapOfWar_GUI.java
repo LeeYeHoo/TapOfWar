@@ -92,19 +92,19 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     int player2ctr=0;
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()== KeyEvent.VK_M){
+        if(evt.getKeyCode()== KeyEvent.VK_Z){
             player1ctr++;
             ctrlabel.setText(""+player1ctr);
             if(player1ctr==10){
                 p1power.setText("N-NANI??");
             }    
             
-            barMain.setValue(barMain.getValue() - 1);
-        }else if(evt.getKeyCode()== KeyEvent.VK_Z){
+            barMain.setValue(barMain.getValue() + 1);
+        }else if(evt.getKeyCode()== KeyEvent.VK_M){
             player2ctr++;
             ctrlabel2.setText(""+player2ctr);
             
-            barMain.setValue(barMain.getValue() + 1);
+            barMain.setValue(barMain.getValue() - 1);
         }
     }//GEN-LAST:event_formKeyReleased
 
