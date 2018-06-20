@@ -11,12 +11,12 @@ import com.sun.glass.events.KeyEvent;
  *
  * @author LoganLee
  */
-public class TapOfWar_GUI extends javax.swing.JFrame {
+public class panel2Player extends javax.swing.JPanel{
 
     /**
-     * Creates new form TapOfWar_GUI
+     * Creates new form panel2Player
      */
-    public TapOfWar_GUI() {
+    public panel2Player() {
         initComponents();
     }
 
@@ -29,17 +29,18 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        barMain = new javax.swing.JProgressBar();
         ctrlabel = new javax.swing.JLabel();
         ctrlabel2 = new javax.swing.JLabel();
         p1power = new javax.swing.JLabel();
-        barMain = new javax.swing.JProgressBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 formKeyReleased(evt);
             }
         });
+
+        barMain.setValue(50);
 
         ctrlabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         ctrlabel.setText("Player 1");
@@ -50,10 +51,8 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         p1power.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         p1power.setText("No power");
 
-        barMain.setValue(50);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -85,64 +84,31 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
                 .addComponent(p1power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        moveBar(evt);
+    }//GEN-LAST:event_formKeyReleased
     int player1ctr=0;
     int player2ctr=0;
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        // TODO add your handling code here:
+    
+    public void moveBar(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode()== KeyEvent.VK_M){
             player1ctr++;
             ctrlabel.setText(""+player1ctr);
             if(player1ctr==10){
                 p1power.setText("N-NANI??");
             }    
-            
+
             barMain.setValue(barMain.getValue() - 1);
         }else if(evt.getKeyCode()== KeyEvent.VK_Z){
             player2ctr++;
             ctrlabel2.setText(""+player2ctr);
-            
+
             barMain.setValue(barMain.getValue() + 1);
         }
-    }//GEN-LAST:event_formKeyReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TapOfWar_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TapOfWar_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TapOfWar_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TapOfWar_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TapOfWar_GUI().setVisible(true);
-            }
-        });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barMain;
     private javax.swing.JLabel ctrlabel;
