@@ -6,18 +6,24 @@
 package tapofwar;
 
 import com.sun.glass.events.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author LoganLee
  */
 public class panel2Player extends javax.swing.JPanel{
-
+    private int ctr;
+    private int player1ctr=0;
+    private int player2ctr=0;
+    private int flag;
     /**
      * Creates new form panel2Player
      */
     public panel2Player() {
         initComponents();
+        timer.start();
     }
 
     /**
@@ -33,6 +39,7 @@ public class panel2Player extends javax.swing.JPanel{
         ctrlabel = new javax.swing.JLabel();
         ctrlabel2 = new javax.swing.JLabel();
         p1power = new javax.swing.JLabel();
+        timerLabel = new javax.swing.JLabel();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -51,6 +58,9 @@ public class panel2Player extends javax.swing.JPanel{
         p1power.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         p1power.setText("No power");
 
+        timerLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        timerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,6 +69,13 @@ public class panel2Player extends javax.swing.JPanel{
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(timerLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(p1power)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -66,15 +83,13 @@ public class panel2Player extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(ctrlabel2)
                         .addGap(66, 66, 66))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -89,8 +104,6 @@ public class panel2Player extends javax.swing.JPanel{
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         moveBar(evt);
     }//GEN-LAST:event_formKeyReleased
-    int player1ctr=0;
-    int player2ctr=0;
     
     public void moveBar(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode()== KeyEvent.VK_M){
@@ -109,10 +122,47 @@ public class panel2Player extends javax.swing.JPanel{
         }
     }
     
+    
+    Thread timer = new Thread() {
+        public void run() {
+            flag=0;
+            for (ctr = 65; ctr >= 0; --ctr) {
+                int preTimer = 60-ctr;
+                try {
+                    if(preTimer<=-1){
+                        timerLabel.setText(Integer.toString(ctr-60));
+                    } else if(preTimer==0){
+                        timerLabel.setText("Start!");
+                    } else {
+                        timerLabel.setText(Integer.toString(ctr));
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TapOfWar_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(ctr==0){
+                    pointCounter();
+                    flag=1;
+                }
+            }
+        }
+    };
+    
+    private void pointCounter() {
+        if (player1ctr > player2ctr) {
+            timerLabel.setText("Player 1 Wins!");
+        } else {
+            timerLabel.setText("Player 2 Wins!");
+        }
+    }
+
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barMain;
     private javax.swing.JLabel ctrlabel;
     private javax.swing.JLabel ctrlabel2;
     private javax.swing.JLabel p1power;
+    private javax.swing.JLabel timerLabel;
     // End of variables declaration//GEN-END:variables
 }

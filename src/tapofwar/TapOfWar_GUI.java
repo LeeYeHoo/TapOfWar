@@ -6,18 +6,24 @@
 package tapofwar;
 
 import com.sun.glass.events.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author LoganLee
  */
 public class TapOfWar_GUI extends javax.swing.JFrame {
-
+     private int ctr;
+    private int player1ctr=0;
+    private int player2ctr=0;
+    private int flag;
     /**
      * Creates new form TapOfWar_GUI
      */
     public TapOfWar_GUI() {
         initComponents();
+        timer.start();
     }
 
     /**
@@ -33,6 +39,7 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         ctrlabel2 = new javax.swing.JLabel();
         p1power = new javax.swing.JLabel();
         barMain = new javax.swing.JProgressBar();
+        timerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -51,6 +58,9 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         p1power.setText("No power");
 
         barMain.setValue(50);
+
+        timerLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        timerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,11 +81,16 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(timerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -88,8 +103,7 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    int player1ctr=0;
-    int player2ctr=0;
+   
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode()== KeyEvent.VK_Z){
@@ -108,6 +122,40 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyReleased
 
+    Thread timer = new Thread() {
+        public void run() {
+            flag=0;
+            for (ctr = 65; ctr >= 0; --ctr) {
+                int preTimer = 60-ctr;
+                try {
+                    if(preTimer<=-1){
+                        timerLabel.setText(Integer.toString(ctr-60));
+                    } else if(preTimer==0){
+                        timerLabel.setText("Start!");
+                    } else {
+                        timerLabel.setText(Integer.toString(ctr));
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TapOfWar_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(ctr==0){
+                    pointCounter();
+                    flag=1;
+                }
+            }
+        }
+    };
+    
+    private void pointCounter() {
+        if (player1ctr > player2ctr) {
+            timerLabel.setText("Player 1 Wins!");
+        } else {
+            timerLabel.setText("Player 2 Wins!");
+        }
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -148,5 +196,6 @@ public class TapOfWar_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel ctrlabel;
     private javax.swing.JLabel ctrlabel2;
     private javax.swing.JLabel p1power;
+    private javax.swing.JLabel timerLabel;
     // End of variables declaration//GEN-END:variables
 }
