@@ -17,7 +17,10 @@ public class panel2Player extends javax.swing.JPanel{
     private int ctr;
     private int player1ctr=0;
     private int player2ctr=0;
-    private int flag;
+    private int timeLimit = 10;
+    private int timeReady = 5;
+    private boolean isTimeUp = false;
+    private int preTimer;
     /**
      * Creates new form panel2Player
      */
@@ -106,31 +109,33 @@ public class panel2Player extends javax.swing.JPanel{
     }//GEN-LAST:event_formKeyReleased
     
     public void moveBar(java.awt.event.KeyEvent evt){
-        if(evt.getKeyCode()== KeyEvent.VK_M){
-            player1ctr++;
-            ctrlabel.setText(""+player1ctr);
-            if(player1ctr==10){
-                p1power.setText("N-NANI??");
-            }    
+        if(isTimeUp == false && preTimer >= 0){
+            if(evt.getKeyCode()== KeyEvent.VK_M){
+                player1ctr++;
+                ctrlabel.setText(""+player1ctr);
+                if(player1ctr==10){
+                    p1power.setText("N-NANI??");
+                }    
 
-            barMain.setValue(barMain.getValue() - 1);
-        }else if(evt.getKeyCode()== KeyEvent.VK_Z){
-            player2ctr++;
-            ctrlabel2.setText(""+player2ctr);
+                barMain.setValue(barMain.getValue() - 1);
+            }else if(evt.getKeyCode()== KeyEvent.VK_Z){
+                player2ctr++;
+                ctrlabel2.setText(""+player2ctr);
 
-            barMain.setValue(barMain.getValue() + 1);
+                barMain.setValue(barMain.getValue() + 1);
+            }
         }
     }
     
     
     Thread timer = new Thread() {
         public void run() {
-            flag=0;
-            for (ctr = 65; ctr >= 0; --ctr) {
-                int preTimer = 60-ctr;
+            
+            for (ctr = timeLimit + timeReady; ctr >= 0; --ctr) {
+                preTimer = timeLimit - ctr;
                 try {
                     if(preTimer<=-1){
-                        timerLabel.setText(Integer.toString(ctr-60));
+                        timerLabel.setText(Integer.toString(ctr-timeLimit));
                     } else if(preTimer==0){
                         timerLabel.setText("Start!");
                     } else {
@@ -141,8 +146,8 @@ public class panel2Player extends javax.swing.JPanel{
                     Logger.getLogger(TapOfWar_GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if(ctr==0){
+                    isTimeUp = true;
                     pointCounter();
-                    flag=1;
                 }
             }
         }
@@ -151,8 +156,10 @@ public class panel2Player extends javax.swing.JPanel{
     private void pointCounter() {
         if (player1ctr > player2ctr) {
             timerLabel.setText("Player 1 Wins!");
-        } else {
+        } else if(player1ctr < player2ctr){
             timerLabel.setText("Player 2 Wins!");
+        }else{
+            timerLabel.setText("Draw!");
         }
     }
 
