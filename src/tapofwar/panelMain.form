@@ -27,9 +27,10 @@
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnSinglePlayer" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn2Player" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnLocal" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnSetting" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnExit" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnLAN" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -37,7 +38,7 @@
                       <Component id="lblMain" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,15 +47,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
               <Component id="lblMain" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
               <Component id="btnSinglePlayer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btn2Player" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnLocal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnLAN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="btnSetting" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnExit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="156" max="32767" attributes="0"/>
+              <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,15 +85,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSinglePlayerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn2Player">
+    <Component class="javax.swing.JButton" name="btnLocal">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="9f" green="dc" red="fe" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="2 Player"/>
+        <Property name="text" type="java.lang.String" value="Local Multi"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn2PlayerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLocalActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSetting">
@@ -113,6 +116,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLAN">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="9f" green="dc" red="fe" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="LAN Multi"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLANActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

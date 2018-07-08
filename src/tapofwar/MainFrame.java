@@ -5,9 +5,8 @@
  */
 package tapofwar;
 
-import com.sun.glass.events.KeyEvent;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -15,48 +14,21 @@ import java.awt.GridBagLayout;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private panelMain panelMain;
-    private final panelSinglePlayer panelSingle;
-    private final panel2Player panel2Player;
-    private final panelSetting panelSetting;
-    private final GridBagLayout layout;
     /**
      * Creates new form MainMenu
      */
     public MainFrame() {
         initComponents();
         
-        layout = new GridBagLayout();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int f_xpos = (int)(screen.getWidth() / 2 - 335 / 2);
+        int f_ypos = (int)(screen.getHeight() / 2 - 565 / 2);
+        setLocation(f_xpos, f_ypos);
+
+        setResizable(false);
         
-        panelSingle = new panelSinglePlayer();
-        panel2Player = new panel2Player();
-        panelSetting = new panelSetting();
-        panelMain = new panelMain(panelSingle, panel2Player, panelSetting);
-        
-        panelMain.setPanelMain(panelMain);
-        
-        getContentPane().setLayout(layout);
-        GridBagConstraints c = new GridBagConstraints();
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        add(panelSingle, c);
-        panelSingle.setVisible(false);
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        add(panel2Player, c);
-        panel2Player.setVisible(false);
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        add(panelSetting, c);
-        panelSetting.setVisible(false);
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        add(panelMain, c);
-        panelMain.setVisible(true);
+        new panelMain(this);
     }
 
     /**
@@ -74,11 +46,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 339, Short.MAX_VALUE)
+            .addGap(0, 335, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
 
         pack();

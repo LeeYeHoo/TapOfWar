@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author LoganLee
  */
-public class panel2Player extends javax.swing.JPanel{
+public class panelLocalMulti extends javax.swing.JPanel{
     private int ctr;
     private int player1ctr=0;
     private int player2ctr=0;
@@ -24,9 +24,9 @@ public class panel2Player extends javax.swing.JPanel{
     /**
      * Creates new form panel2Player
      */
-    public panel2Player() {
+    public panelLocalMulti() {
         initComponents();
-        timer.start();
+        //timer.start();
     }
 
     /**
@@ -83,7 +83,7 @@ public class panel2Player extends javax.swing.JPanel{
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ctrlabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(ctrlabel2)
                         .addGap(66, 66, 66))))
         );
@@ -92,7 +92,7 @@ public class panel2Player extends javax.swing.JPanel{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

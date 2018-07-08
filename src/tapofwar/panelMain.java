@@ -5,27 +5,75 @@
  */
 package tapofwar;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 /**
  *
  * @author LoganLee
  */
 public class panelMain extends javax.swing.JPanel {
 
+    private MainFrame frame;
     private final panelSinglePlayer panelSingle;
-    private final panel2Player panel2Player;
+    private final panelLocalMulti panelLocalMulti;
+    private final panelLANMulti panelLANMulti;
     private final panelSetting panelSetting;
     private panelMain panelMain;
-    
+    private final GridBagLayout layout;
     /**
      * Creates new form panelMain
      */
-    public panelMain(panelSinglePlayer panelSingle, panel2Player panel2Player, panelSetting panelSetting) {
+    public panelMain(MainFrame frame) {
         initComponents();
-        this.panelSingle = panelSingle;
-        this.panel2Player = panel2Player;
-        this.panelSetting = panelSetting;
+        
+        this.frame = frame;
+        layout = new GridBagLayout();
+        
+        panelSingle = new panelSinglePlayer(this);
+        panelLocalMulti = new panelLocalMulti();
+        panelLANMulti = new panelLANMulti("127.0.0.1", this);
+        panelSetting = new panelSetting();
+        panelMain = this;
+        
+        frame.getContentPane().setLayout(layout);
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(panelSingle, c);
+        panelSingle.setVisible(false);
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(panelLocalMulti, c);
+        panelLocalMulti.setVisible(false);
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(panelLANMulti, c);
+        panelLANMulti.setVisible(false);
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(panelSetting, c);
+        panelSetting.setVisible(false);
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        frame.add(panelMain, c);
+        panelMain.setVisible(true);
+        
     }
 
+    public void showMain(){
+        panelSingle.setVisible(false);
+        panelSetting.setVisible(false);
+        panelLocalMulti.setVisible(false);
+        panelLANMulti.setVisible(false);
+        panelMain.setVisible(true);
+    }
+    
     public void setPanelMain(panelMain panelMain) {
         this.panelMain = panelMain;
     }
@@ -41,9 +89,10 @@ public class panelMain extends javax.swing.JPanel {
 
         lblMain = new javax.swing.JLabel();
         btnSinglePlayer = new javax.swing.JButton();
-        btn2Player = new javax.swing.JButton();
+        btnLocal = new javax.swing.JButton();
         btnSetting = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnLAN = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(63, 32, 69));
 
@@ -59,11 +108,11 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
-        btn2Player.setBackground(new java.awt.Color(254, 220, 159));
-        btn2Player.setText("2 Player");
-        btn2Player.addActionListener(new java.awt.event.ActionListener() {
+        btnLocal.setBackground(new java.awt.Color(254, 220, 159));
+        btnLocal.setText("Local Multi");
+        btnLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2PlayerActionPerformed(evt);
+                btnLocalActionPerformed(evt);
             }
         });
 
@@ -83,6 +132,14 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
+        btnLAN.setBackground(new java.awt.Color(254, 220, 159));
+        btnLAN.setText("LAN Multi");
+        btnLAN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLANActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,41 +150,46 @@ public class panelMain extends javax.swing.JPanel {
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSinglePlayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn2Player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLAN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(lblMain)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(lblMain)
-                .addGap(134, 134, 134)
+                .addGap(140, 140, 140)
                 .addComponent(btnSinglePlayer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn2Player)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLocal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLAN)
+                .addGap(1, 1, 1)
                 .addComponent(btnSetting)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExit)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSinglePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinglePlayerActionPerformed
         panelMain.setVisible(false);
         panelSingle.setVisible(true);
+        panelSingle.startGame();
+        panelSingle.requestFocusInWindow();
     }//GEN-LAST:event_btnSinglePlayerActionPerformed
 
-    private void btn2PlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2PlayerActionPerformed
+    private void btnLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalActionPerformed
         panelMain.setVisible(false);
-        panel2Player.setVisible(true);
-        panel2Player.requestFocusInWindow();
-    }//GEN-LAST:event_btn2PlayerActionPerformed
+        panelLocalMulti.setVisible(true);
+        panelLocalMulti.requestFocusInWindow();
+    }//GEN-LAST:event_btnLocalActionPerformed
 
     private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
         panelMain.setVisible(false);
@@ -138,10 +200,23 @@ public class panelMain extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnLANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLANActionPerformed
+        panelMain.setVisible(false);
+        panelLANMulti.setVisible(true);
+        panelLANMulti.requestFocusInWindow();
+        
+        new Thread(){
+            public void run(){
+                panelLANMulti.runServer();
+            }
+        }.start();
+    }//GEN-LAST:event_btnLANActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn2Player;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLAN;
+    private javax.swing.JButton btnLocal;
     private javax.swing.JButton btnSetting;
     private javax.swing.JButton btnSinglePlayer;
     private javax.swing.JLabel lblMain;
