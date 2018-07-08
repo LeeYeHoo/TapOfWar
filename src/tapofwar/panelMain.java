@@ -45,9 +45,13 @@ public class panelMain extends javax.swing.JPanel {
         btnSetting = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
-        lblMain.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        setBackground(new java.awt.Color(63, 32, 69));
+
+        lblMain.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
+        lblMain.setForeground(new java.awt.Color(254, 220, 159));
         lblMain.setText("Tap Of War");
 
+        btnSinglePlayer.setBackground(new java.awt.Color(255, 0, 0));
         btnSinglePlayer.setText("Single Player");
         btnSinglePlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +59,7 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
+        btn2Player.setBackground(new java.awt.Color(254, 220, 159));
         btn2Player.setText("2 Player");
         btn2Player.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +67,7 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
+        btnSetting.setBackground(new java.awt.Color(254, 220, 159));
         btnSetting.setText("Settings");
         btnSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +75,7 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
+        btnExit.setBackground(new java.awt.Color(254, 220, 159));
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,23 +90,23 @@ public class panelMain extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(lblMain))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSinglePlayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn2Player, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(lblMain)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
+                .addGap(114, 114, 114)
                 .addComponent(lblMain)
-                .addGap(129, 129, 129)
+                .addGap(134, 134, 134)
                 .addComponent(btnSinglePlayer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn2Player)
@@ -107,7 +114,7 @@ public class panelMain extends javax.swing.JPanel {
                 .addComponent(btnSetting)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExit)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
