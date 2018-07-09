@@ -31,7 +31,7 @@ public class panelMain extends javax.swing.JPanel {
         layout = new GridBagLayout();
         
         panelSingle = new panelSinglePlayer(this);
-        panelLocalMulti = new panelLocalMulti();
+        panelLocalMulti = new panelLocalMulti(this);
         panelLANMulti = new panelLANMulti("127.0.0.1", this);
         panelSetting = new panelSetting();
         panelMain = this;
@@ -188,6 +188,7 @@ public class panelMain extends javax.swing.JPanel {
     private void btnLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalActionPerformed
         panelMain.setVisible(false);
         panelLocalMulti.setVisible(true);
+        panelLocalMulti.startGame();
         panelLocalMulti.requestFocusInWindow();
     }//GEN-LAST:event_btnLocalActionPerformed
 

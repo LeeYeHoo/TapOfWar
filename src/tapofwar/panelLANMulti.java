@@ -6,6 +6,7 @@
 package tapofwar;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.event.InputEvent;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,6 +16,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 /**
@@ -40,6 +42,8 @@ public class panelLANMulti extends javax.swing.JPanel {
     private panelMain panelMain;
     private int answer;
     
+    private boolean isP1ComboDone = false;
+    private boolean isP2ComboDone = false;
     private boolean isClosed;
     
     /**
@@ -55,7 +59,7 @@ public class panelLANMulti extends javax.swing.JPanel {
         this.panelMain = panelMain;
         isClosed = false;
         timeReady = 5;
-        timeLimit = 10;
+        timeLimit = 60;
     }
     
     public void runServer() {
@@ -93,7 +97,7 @@ public class panelLANMulti extends javax.swing.JPanel {
 
     private void processConnection() throws IOException {
         Object object = message;
-        timerLabel.setText("Waiting for Opponent...");
+        timerLabel.setText("Waiting...");
         do {
             try {
                 object = input.readObject();
@@ -151,6 +155,11 @@ public class panelLANMulti extends javax.swing.JPanel {
                     continue;
                 }
                 
+                if(object.getClass() == KeyStroke.class){
+                    opponentTap((KeyStroke)object);
+                    continue;
+                }
+                
                 opponentTap();
             } catch (ClassNotFoundException ex) {
                 displayMessage("\nUnkown object type received");
@@ -195,6 +204,18 @@ public class panelLANMulti extends javax.swing.JPanel {
     public void opponentTap(){
         player2ctr ++;
         barMain.setValue(barMain.getValue() - 1);
+        p2Label.setText(""+player2ctr);
+        //tap steal at payer 2
+        if(player2ctr==20){
+            p2power.setText("Opponent Can Steal Your taps!");
+        }
+    }
+    
+    public void opponentTap(KeyStroke combo){
+        p2power.setText("YOUR TAPS STOLEN");
+        player1ctr-=10;
+        p1Label.setText(""+player1ctr);
+        isP2ComboDone = true;
     }
     
     public void resetGame(){
@@ -202,6 +223,10 @@ public class panelLANMulti extends javax.swing.JPanel {
         player2ctr = 0;
         player1ctr = 0;
         timerLabel.setText("");
+        p1Label.setText("You");
+        p2Label.setText("Opponent");
+        p1power.setText("No power");
+        p2power.setText("No power");        
         isTimeUp = false;
         isClosed = false;
     }
@@ -233,6 +258,10 @@ public class panelLANMulti extends javax.swing.JPanel {
 
         barMain = new javax.swing.JProgressBar();
         timerLabel = new javax.swing.JLabel();
+        p1Label = new javax.swing.JLabel();
+        p2power = new javax.swing.JLabel();
+        p2Label = new javax.swing.JLabel();
+        p1power = new javax.swing.JLabel();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -246,6 +275,18 @@ public class panelLANMulti extends javax.swing.JPanel {
         timerLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         timerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        p1Label.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        p1Label.setText("You");
+
+        p2power.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        p2power.setText("No power");
+
+        p2Label.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        p2Label.setText("Opponent");
+
+        p1power.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        p1power.setText("No power");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,6 +299,18 @@ public class panelLANMulti extends javax.swing.JPanel {
                         .addGap(8, 8, 8)
                         .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(89, 89, 89))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(p1power)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(p2power))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(p1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(p2Label)))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,16 +319,37 @@ public class panelLANMulti extends javax.swing.JPanel {
                 .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(p1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p2Label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(p1power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p2power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void moveBar(java.awt.event.KeyEvent evt){
+        KeyStroke combo1 = KeyStroke.getKeyStroke(evt.getKeyCode(), evt.getModifiers());
         if(isTimeUp == false && preTimer >= 0){
-            if(evt.getKeyCode()== KeyEvent.VK_M){
+            if(evt.getKeyCode()== KeyEvent.VK_Z){
                 sendData(1);
                 player1ctr++;
+                p1Label.setText(""+player1ctr);
                 barMain.setValue(barMain.getValue() + 1);
+                //tap steal at player 1
+                if(player1ctr==20){
+                    p1power.setText("Press Shift+A to steal taps!");
+                }    
+            }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_A,InputEvent.SHIFT_DOWN_MASK)) && player1ctr>=20 && isP1ComboDone == false){
+                sendData(combo1);
+                p1power.setText("P2's TAPS STOLEN");
+                player2ctr-=10;
+                p2Label.setText(""+player2ctr);
+                System.out.println("Works");
+                isP1ComboDone = true;
             }
         }
     }
@@ -287,6 +361,10 @@ public class panelLANMulti extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barMain;
+    private javax.swing.JLabel p1Label;
+    private javax.swing.JLabel p1power;
+    private javax.swing.JLabel p2Label;
+    private javax.swing.JLabel p2power;
     private javax.swing.JLabel timerLabel;
     // End of variables declaration//GEN-END:variables
 }

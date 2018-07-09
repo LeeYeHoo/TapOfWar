@@ -124,7 +124,6 @@ public class panelSinglePlayer extends javax.swing.JPanel {
     
     public boolean isFinished(){
         return (barMain.getValue()>=100 || barMain.getValue()<=0);
-        
     }
     
     public void moveBar(java.awt.event.KeyEvent evt){
