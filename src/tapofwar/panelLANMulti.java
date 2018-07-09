@@ -207,9 +207,9 @@ public class panelLANMulti extends javax.swing.JPanel {
     }
     
     public void displayWinner(){
-        if(barMain.getValue()>=100 || player1ctr<player2ctr){
+        if(player1ctr<player2ctr){
             timerLabel.setText("You Lose");
-        } else if (barMain.getValue()<=0 || player1ctr>player2ctr){
+        } else if (player1ctr>player2ctr){
             timerLabel.setText("You Win");
         }else{
             timerLabel.setText("Draw");
@@ -273,6 +273,7 @@ public class panelLANMulti extends javax.swing.JPanel {
     public void moveBar(java.awt.event.KeyEvent evt){
         if(isTimeUp == false && preTimer >= 0){
             if(evt.getKeyCode()== KeyEvent.VK_M){
+                sendData(1);
                 player1ctr++;
                 barMain.setValue(barMain.getValue() + 1);
             }
@@ -280,7 +281,6 @@ public class panelLANMulti extends javax.swing.JPanel {
     }
     
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        sendData(1);
         moveBar(evt);
     }//GEN-LAST:event_formKeyReleased
 

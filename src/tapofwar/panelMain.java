@@ -197,7 +197,8 @@ public class panelMain extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSettingActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        
+        frame.setVisible(false);
+        frame.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLANActionPerformed
