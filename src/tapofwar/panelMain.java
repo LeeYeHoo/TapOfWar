@@ -18,7 +18,7 @@ public class panelMain extends javax.swing.JPanel {
     private final panelSinglePlayer panelSingle;
     private final panelLocalMulti panelLocalMulti;
     private final panelLANMulti panelLANMulti;
-    private final panelSetting panelSetting;
+  //  private final panelSetting panelSetting;
     private panelMain panelMain;
     private final GridBagLayout layout;
     /**
@@ -33,7 +33,7 @@ public class panelMain extends javax.swing.JPanel {
         panelSingle = new panelSinglePlayer(this);
         panelLocalMulti = new panelLocalMulti(this);
         panelLANMulti = new panelLANMulti("127.0.0.1", this);
-        panelSetting = new panelSetting();
+   //     panelSetting = new panelSetting();
         panelMain = this;
         
         frame.getContentPane().setLayout(layout);
@@ -56,8 +56,8 @@ public class panelMain extends javax.swing.JPanel {
         
         c.gridx = 0;
         c.gridy = 0;
-        frame.add(panelSetting, c);
-        panelSetting.setVisible(false);
+      //  frame.add(panelSetting, c);
+    //    panelSetting.setVisible(false);
         
         c.gridx = 0;
         c.gridy = 0;
@@ -68,7 +68,7 @@ public class panelMain extends javax.swing.JPanel {
 
     public void showMain(){
         panelSingle.setVisible(false);
-        panelSetting.setVisible(false);
+      //  panelSetting.setVisible(false);
         panelLocalMulti.setVisible(false);
         panelLANMulti.setVisible(false);
         panelMain.setVisible(true);
@@ -90,7 +90,6 @@ public class panelMain extends javax.swing.JPanel {
         lblMain = new javax.swing.JLabel();
         btnSinglePlayer = new javax.swing.JButton();
         btnLocal = new javax.swing.JButton();
-        btnSetting = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnLAN = new javax.swing.JButton();
 
@@ -116,14 +115,6 @@ public class panelMain extends javax.swing.JPanel {
             }
         });
 
-        btnSetting.setBackground(new java.awt.Color(254, 220, 159));
-        btnSetting.setText("Settings");
-        btnSetting.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSettingActionPerformed(evt);
-            }
-        });
-
         btnExit.setBackground(new java.awt.Color(254, 220, 159));
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -145,34 +136,30 @@ public class panelMain extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSinglePlayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLAN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(lblMain)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(107, 107, 107)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSinglePlayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLAN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMain)
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(115, 115, 115)
                 .addComponent(lblMain)
-                .addGap(140, 140, 140)
+                .addGap(139, 139, 139)
                 .addComponent(btnSinglePlayer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLocal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLAN)
-                .addGap(1, 1, 1)
-                .addComponent(btnSetting)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(btnExit)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
@@ -191,11 +178,6 @@ public class panelMain extends javax.swing.JPanel {
         panelLocalMulti.startGame();
         panelLocalMulti.requestFocusInWindow();
     }//GEN-LAST:event_btnLocalActionPerformed
-
-    private void btnSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingActionPerformed
-        panelMain.setVisible(false);
-        panelSetting.setVisible(true);
-    }//GEN-LAST:event_btnSettingActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         frame.setVisible(false);
@@ -219,7 +201,6 @@ public class panelMain extends javax.swing.JPanel {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLAN;
     private javax.swing.JButton btnLocal;
-    private javax.swing.JButton btnSetting;
     private javax.swing.JButton btnSinglePlayer;
     private javax.swing.JLabel lblMain;
     // End of variables declaration//GEN-END:variables

@@ -124,7 +124,7 @@ public class panelLANMulti extends javax.swing.JPanel {
                                         Thread.sleep(1000);
 
                                     } catch (InterruptedException ex) {
-                                        Logger.getLogger(TapOfWar_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(panelLANMulti.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     if(ctr==0){
                                         isTimeUp = true;
@@ -263,6 +263,7 @@ public class panelLANMulti extends javax.swing.JPanel {
         p2Label = new javax.swing.JLabel();
         p1power = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(63, 32, 69));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 formKeyReleased(evt);
@@ -273,18 +274,23 @@ public class panelLANMulti extends javax.swing.JPanel {
         barMain.setValue(50);
 
         timerLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        timerLabel.setForeground(new java.awt.Color(255, 255, 40));
         timerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         p1Label.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        p1Label.setForeground(new java.awt.Color(254, 220, 159));
         p1Label.setText("You");
 
         p2power.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        p2power.setForeground(new java.awt.Color(255, 255, 40));
         p2power.setText("No power");
 
         p2Label.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        p2Label.setForeground(new java.awt.Color(254, 220, 159));
         p2Label.setText("Opponent");
 
         p1power.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        p1power.setForeground(new java.awt.Color(255, 255, 40));
         p1power.setText("No power");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

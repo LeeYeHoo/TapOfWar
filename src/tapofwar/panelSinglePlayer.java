@@ -68,7 +68,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
                                 Thread.sleep(1000);
 
                             } catch (InterruptedException ex) {
-                                Logger.getLogger(TapOfWar_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(panelSinglePlayer.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             if(ctr==0){
                                 isTimeUp = true;
@@ -150,6 +150,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
         timerLabel = new javax.swing.JLabel();
         ctrlabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(63, 32, 69));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 formKeyReleased(evt);
@@ -160,6 +161,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
         barMain.setValue(50);
 
         timerLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        timerLabel.setForeground(new java.awt.Color(255, 255, 40));
         timerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         ctrlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
