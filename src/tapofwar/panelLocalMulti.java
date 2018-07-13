@@ -100,7 +100,7 @@ public class panelLocalMulti extends javax.swing.JPanel{
         timerLabel.setText("");
         p1Label.setText("Player 1");
         p2Label.setText("Player 2");
-        p1power.setText("No power");
+        p2Power2.setText("No power");
         p2power.setText("No power");
         isTimeUp = false;
     }
@@ -121,9 +121,11 @@ public class panelLocalMulti extends javax.swing.JPanel{
         barMain = new javax.swing.JProgressBar();
         p1Label = new javax.swing.JLabel();
         p2Label = new javax.swing.JLabel();
-        p1power = new javax.swing.JLabel();
+        p2Power2 = new javax.swing.JLabel();
         timerLabel = new javax.swing.JLabel();
         p2power = new javax.swing.JLabel();
+        p1power = new javax.swing.JLabel();
+        p1power2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(63, 32, 69));
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -142,9 +144,9 @@ public class panelLocalMulti extends javax.swing.JPanel{
         p2Label.setForeground(new java.awt.Color(254, 220, 159));
         p2Label.setText("Player 2");
 
-        p1power.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        p1power.setForeground(new java.awt.Color(255, 255, 40));
-        p1power.setText("No power");
+        p2Power2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        p2Power2.setForeground(new java.awt.Color(255, 255, 40));
+        p2Power2.setText("No power");
 
         timerLabel.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         timerLabel.setForeground(new java.awt.Color(255, 255, 40));
@@ -154,6 +156,14 @@ public class panelLocalMulti extends javax.swing.JPanel{
         p2power.setForeground(new java.awt.Color(255, 255, 40));
         p2power.setText("No power");
 
+        p1power.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        p1power.setForeground(new java.awt.Color(255, 255, 40));
+        p1power.setText("No power");
+
+        p1power2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        p1power2.setForeground(new java.awt.Color(255, 255, 40));
+        p1power2.setText("No power");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,40 +172,51 @@ public class panelLocalMulti extends javax.swing.JPanel{
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(timerLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 32, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(p1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(p2Label)
+                        .addGap(72, 72, 72))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(p1power)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(p2power))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(p1Label)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(p2Label)))
-                        .addGap(43, 43, 43))))
+                            .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(p1power2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(p2power, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(p2Power2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(p1power, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(174, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(timerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barMain, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(p1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(p2Label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(p2Power2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p1power2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(p2power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(512, Short.MAX_VALUE)
                     .addComponent(p1power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p2power, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGap(2, 2, 2)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,10 +233,11 @@ public class panelLocalMulti extends javax.swing.JPanel{
                 barMain.setValue(barMain.getValue() + 1);
                 //tap steal at player 1
                 if(player1ctr==20){
-                    p1power.setText("Press Shift+A to steal taps!");
+                    p1power.setText("Shift+A to steal!");
+                    p1power2.setText("Shift+S to freeze!");
                 }    
             }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_A,InputEvent.SHIFT_DOWN_MASK)) && player1ctr>=20 && isP1ComboDone == false){
-                    p1power.setText("P2's TAPS STOLEN");
+                    p2Power2.setText("P2's TAPS STOLEN");
                     player2ctr-=10;
                     p2Label.setText(""+player2ctr);
                     System.out.println("Works");
@@ -226,7 +248,8 @@ public class panelLocalMulti extends javax.swing.JPanel{
                 barMain.setValue(barMain.getValue() - 1);
                 //tap steal at payer 2
                 if(player2ctr==20){
-                    p2power.setText("Press Alt+K to steal taps!");
+                    p2power.setText("Alt+K to steal!");
+                    p2Power2.setText("Alt+L to freeze!");
                 }    
             }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_K,InputEvent.ALT_DOWN_MASK)) && player2ctr>=20 && isP2ComboDone == false){
                     p2power.setText("P1's TAPS STOLEN");
@@ -237,7 +260,7 @@ public class panelLocalMulti extends javax.swing.JPanel{
             }else if((combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.SHIFT_DOWN_MASK))&& player1ctr>=20 && isP1ComboDone == false)){
                     freeze(1);
                     isP1ComboDone = true;
-            }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.SHIFT_DOWN_MASK))&& player2ctr>=20 && isP2ComboDone == false){
+            }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.ALT_DOWN_MASK))&& player2ctr>=20 && isP2ComboDone == false){
                     freeze(2);
                     isP2ComboDone = true;
             }
@@ -272,7 +295,9 @@ public class panelLocalMulti extends javax.swing.JPanel{
     private javax.swing.JProgressBar barMain;
     private javax.swing.JLabel p1Label;
     private javax.swing.JLabel p1power;
+    private javax.swing.JLabel p1power2;
     private javax.swing.JLabel p2Label;
+    private javax.swing.JLabel p2Power2;
     private javax.swing.JLabel p2power;
     private javax.swing.JLabel timerLabel;
     // End of variables declaration//GEN-END:variables
