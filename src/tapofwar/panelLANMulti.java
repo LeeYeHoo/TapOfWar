@@ -45,6 +45,8 @@ public class panelLANMulti extends javax.swing.JPanel {
     private boolean isP1ComboDone = false;
     private boolean isP2ComboDone = false;
     private boolean isClosed;
+    private boolean isStarted;
+    private boolean isWaiting;
     
     /**
      * Creates new form panelLANMulti
@@ -58,6 +60,7 @@ public class panelLANMulti extends javax.swing.JPanel {
         
         this.panelMain = panelMain;
         isClosed = false;
+        isStarted = false;
         timeReady = 5;
         timeLimit = 20;
     }
@@ -109,6 +112,15 @@ public class panelLANMulti extends javax.swing.JPanel {
                         public void run() {
                             answer = 0;
                             while(answer == 0){
+                                while(isWaiting){
+                                    try {
+                                        Thread.sleep(100);
+                                    } catch (InterruptedException ex) {
+                                        Logger.getLogger(panelLANMulti.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                };
+                                isWaiting = true;
+                                isStarted = true;
                                 for (ctr = timeLimit + timeReady; ctr >= 0 && isFinished()!=true && isClosed == false; --ctr) {
                                     preTimer = timeLimit - ctr;
                                     try {
@@ -134,13 +146,17 @@ public class panelLANMulti extends javax.swing.JPanel {
                                 
                                 if(isClosed)break;
                                 
+                                sendData("Finish");
+                                isStarted = false;
                                 displayWinner();
                                 answer = JOptionPane.showOptionDialog(null , "Want to play again?", "Game End", JOptionPane.YES_NO_CANCEL_OPTION, 
                                         JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-                                if(answer == 0) resetGame();
+                                if(answer == 0){
+                                    resetGame();
+                                    sendData("Okay");
+                                }
                             }
-                            
                             if(isClosed == false){
                                 sendData("TERMINATE");
                             }
@@ -151,7 +167,10 @@ public class panelLANMulti extends javax.swing.JPanel {
                 }
 
                 if (object.getClass() == String.class) {
-                    opponentName = (String) object;
+                    if(object.equals("Okay")){
+                        isWaiting = false;
+                    }
+//                    opponentName = (String) object;
                     continue;
                 }
                 
@@ -222,7 +241,7 @@ public class panelLANMulti extends javax.swing.JPanel {
         barMain.setValue(50);
         player2ctr = 0;
         player1ctr = 0;
-        timerLabel.setText("");
+        timerLabel.setText("Waiting...");
         p1Label.setText("You");
         p2Label.setText("Opponent");
         p1power.setText("No power");
@@ -361,6 +380,9 @@ public class panelLANMulti extends javax.swing.JPanel {
     }
     
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        if(isStarted == false)
+            return;
+        
         moveBar(evt);
     }//GEN-LAST:event_formKeyReleased
 

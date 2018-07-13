@@ -5,15 +5,8 @@
  */
 package tapofwar;
 
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -28,18 +21,11 @@ public class panelMain extends javax.swing.JPanel {
   //  private final panelSetting panelSetting;
     private panelMain panelMain;
     private final GridBagLayout layout;
-    public BufferedImage i;
     /**
      * Creates new form panelMain
      */
     public panelMain(MainFrame frame) {
         initComponents();
-        
-        try {
-            i = ImageIO.read(new File("src/image/brickwall.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(panelMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         this.frame = frame;
         layout = new GridBagLayout();
@@ -80,11 +66,6 @@ public class panelMain extends javax.swing.JPanel {
         
     }
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(i, 0, 0, this); // see javadoc for more info on the parameters            
-    }
-    
     public void showMain(){
         panelSingle.setVisible(false);
       //  panelSetting.setVisible(false);
@@ -114,8 +95,8 @@ public class panelMain extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(63, 32, 69));
 
-        lblMain.setFont(new java.awt.Font("Hobo Std", 0, 36)); // NOI18N
-        lblMain.setForeground(new java.awt.Color(255, 255, 255));
+        lblMain.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
+        lblMain.setForeground(new java.awt.Color(254, 220, 159));
         lblMain.setText("Tap Of War");
 
         btnSinglePlayer.setBackground(new java.awt.Color(255, 0, 0));
@@ -165,14 +146,14 @@ public class panelMain extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMain)
-                .addGap(43, 43, 43))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(115, 115, 115)
                 .addComponent(lblMain)
-                .addGap(131, 131, 131)
+                .addGap(139, 139, 139)
                 .addComponent(btnSinglePlayer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLocal)
@@ -180,7 +161,7 @@ public class panelMain extends javax.swing.JPanel {
                 .addComponent(btnLAN)
                 .addGap(30, 30, 30)
                 .addComponent(btnExit)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

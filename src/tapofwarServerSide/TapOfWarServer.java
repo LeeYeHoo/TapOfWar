@@ -114,6 +114,16 @@ public class TapOfWarServer {
         do {
             try {
                 object = socketArray[i].getInput().readObject();
+                if(object.equals("Click")){
+                    socketArray[i].setPlayAgain(true);
+                    if(socketArray[socketArray[i].getOpponentIndex()].isPlayAgain()){
+                        sendData("Okay", i);
+                        sendData("Okay", socketArray[i].getOpponentIndex());
+                    }
+                }else if(object.equals("Finish")){
+                    socketArray[i].setPlayAgain(false);
+                }
+                
                 sendData(object, i);
             } catch (ClassNotFoundException ex) {
                 displayMessage("\nUnkown object type received");

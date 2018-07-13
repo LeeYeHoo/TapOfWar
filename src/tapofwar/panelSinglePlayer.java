@@ -6,7 +6,6 @@
 package tapofwar;
 
 import com.sun.glass.events.KeyEvent;
-import java.awt.Graphics;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,17 +36,11 @@ public class panelSinglePlayer extends javax.swing.JPanel {
         initComponents();
         
         this.panelMain = panelMain;
-        
         random = new Random();
         
         timeReady = 5;
         timeLimit = 10;
        
-    }
-    
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(panelMain.i, 0, 0, this); // see javadoc for more info on the parameters            
     }
     
     public void startGame(){
@@ -70,6 +63,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
                                     isStart = true;
                                 } else {
                                     timerLabel.setText(Integer.toString(ctr));
+                               
                                 }
 
                                 Thread.sleep(1000);
@@ -103,7 +97,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
                             compCtr = random.nextInt(2);
                             barMain.setValue(barMain.getValue()+compCtr);
                         }
-                        Thread.sleep(100);
+                        Thread.sleep(500);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(panelSinglePlayer.class.getName()).log(Level.SEVERE, null, ex);
                     }

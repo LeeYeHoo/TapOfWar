@@ -19,6 +19,15 @@ public class SocketInfo {
     private ObjectInputStream input;
     private int socketIndex;
     private int opponentIndex;
+    private boolean playAgain;
+
+    public boolean isPlayAgain() {
+        return playAgain;
+    }
+
+    public void setPlayAgain(boolean playAgain) {
+        this.playAgain = playAgain;
+    }
 
     public Socket getConnection() {
         return connection;
