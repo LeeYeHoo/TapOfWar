@@ -63,6 +63,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
                                     isStart = true;
                                 } else {
                                     timerLabel.setText(Integer.toString(ctr));
+                               
                                 }
 
                                 Thread.sleep(1000);
@@ -96,7 +97,7 @@ public class panelSinglePlayer extends javax.swing.JPanel {
                             compCtr = random.nextInt(2);
                             barMain.setValue(barMain.getValue()+compCtr);
                         }
-                        Thread.sleep(100);
+                        Thread.sleep(500);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(panelSinglePlayer.class.getName()).log(Level.SEVERE, null, ex);
                     }

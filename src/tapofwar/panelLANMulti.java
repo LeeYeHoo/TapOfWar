@@ -59,7 +59,7 @@ public class panelLANMulti extends javax.swing.JPanel {
         this.panelMain = panelMain;
         isClosed = false;
         timeReady = 5;
-        timeLimit = 60;
+        timeLimit = 20;
     }
     
     public void runServer() {

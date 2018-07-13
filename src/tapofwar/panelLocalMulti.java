@@ -17,16 +17,20 @@ import javax.swing.KeyStroke;
  * @author LoganLee
  */
 public class panelLocalMulti extends javax.swing.JPanel{
+    private int timerState;
     private int ctr;
     private int player1ctr=0;
     private int player2ctr=0;
-    private int timeLimit = 60;
+    private int timeLimit = 20;
     private int timeReady = 5;
     private boolean isTimeUp = false;
     private int preTimer;
     private boolean isP1ComboDone = false;
     private boolean isP2ComboDone = false;
+    private boolean isFrozen1;
+    private boolean isFrozen2;
     private int answer;
+    private int comboTimer;
     private final Object[] options;
     private panelMain panelMain;
     /**
@@ -202,7 +206,7 @@ public class panelLocalMulti extends javax.swing.JPanel{
     public void moveBar(java.awt.event.KeyEvent evt){
         KeyStroke combo1 = KeyStroke.getKeyStroke(evt.getKeyCode(), evt.getModifiers());
         if(isTimeUp == false && preTimer >= 0){
-            if(evt.getKeyCode()== KeyEvent.VK_Z){
+            if(evt.getKeyCode()== KeyEvent.VK_Z && isFrozen1==false){
                 player1ctr++;
                 p1Label.setText(""+player1ctr);
                 barMain.setValue(barMain.getValue() + 1);
@@ -216,7 +220,7 @@ public class panelLocalMulti extends javax.swing.JPanel{
                     p2Label.setText(""+player2ctr);
                     System.out.println("Works");
                     isP1ComboDone = true;
-            }else if(evt.getKeyCode()== KeyEvent.VK_M){
+            }else if(evt.getKeyCode()== KeyEvent.VK_M && isFrozen2==false){
                 player2ctr++;
                 p2Label.setText(""+player2ctr);
                 barMain.setValue(barMain.getValue() - 1);
@@ -230,11 +234,39 @@ public class panelLocalMulti extends javax.swing.JPanel{
                     p1Label.setText(""+player1ctr);
                     System.out.println("Works");
                     isP2ComboDone = true;
+            }else if((combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.SHIFT_DOWN_MASK))&& player1ctr>=20 && isP1ComboDone == false)){
+                    freeze(1);
+                    isP1ComboDone = true;
+            }else if(combo1.equals(KeyStroke.getKeyStroke(KeyEvent.VK_L,InputEvent.SHIFT_DOWN_MASK))&& player2ctr>=20 && isP2ComboDone == false){
+                    freeze(2);
+                    isP2ComboDone = true;
             }
         }
     }
 
-
+    public void freeze(int side){
+        
+        new Thread(){
+            @Override
+            public void run(){
+//                
+                    if(side==2){
+                        isFrozen1 = true;
+                    } else if (side==1){
+                        isFrozen2 = true;
+                    }
+                    
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(panelLocalMulti.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    isFrozen1 = false;
+                    isFrozen2 = false;
+                }
+        }.start();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barMain;

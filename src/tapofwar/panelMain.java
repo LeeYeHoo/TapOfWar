@@ -32,7 +32,7 @@ public class panelMain extends javax.swing.JPanel {
         
         panelSingle = new panelSinglePlayer(this);
         panelLocalMulti = new panelLocalMulti(this);
-        panelLANMulti = new panelLANMulti("127.0.0.1", this);
+        panelLANMulti = new panelLANMulti("172.16.11.35", this);
    //     panelSetting = new panelSetting();
         panelMain = this;
         
